@@ -25,7 +25,6 @@ class Controls {
           this.reverse = true;
           break;
       }
-      console.table(this);
     };
 
     // when a key is released, the event is triggered
@@ -44,7 +43,6 @@ class Controls {
           this.reverse = false;
           break;
       }
-        console.table(this);
     };
   }
 }
