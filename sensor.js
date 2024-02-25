@@ -9,23 +9,7 @@ class Sensor{
     }
 
     update(){
-        this.rays = []; // Clear the rays array
-        for(let i = 0; i < this.rayCount; i++){ 
-            // Create a new ray for each angle
-           const rayAngle = lerp(
-            this.raySpread/2, // Start angle
-            -this.raySpread/2, // End angle
-            this.rayCount===1? 0.5 : i/(this.rayCount-1) // check if there is just one and add tho the middle, if not spread
-           ) + this.car.angle; // The rays will follow car postion
-
-              // Calculate the ray position
-              const start = {x:this.car.x, y:this.car.y};
-              const end = {
-                  x: this.car.x - Math.sin(rayAngle)*this.rayLength,
-                  y: this.car.y - Math.cos(rayAngle)*this.rayLength
-              };
-                this.rays.push([start, end]); // Add the ray to the array
-        }
+        this.#castRays();
     
     }
 
@@ -43,6 +27,28 @@ class Sensor{
                 this.rays[i][1].y
                 );
             ctx.stroke();
+        }
+    }
+
+
+    // Private methods
+    #castRays(){
+        this.rays = []; // Clear the rays array
+        for(let i = 0; i < this.rayCount; i++){ 
+            // Create a new ray for each angle
+           const rayAngle = lerp(
+            this.raySpread/2, // Start angle
+            -this.raySpread/2, // End angle
+            this.rayCount===1? 0.5 : i/(this.rayCount-1) // check if there is just one and add tho the middle, if not spread
+           ) + this.car.angle; // The rays will follow car postion
+
+              // Calculate the ray position
+              const start = {x:this.car.x, y:this.car.y};
+              const end = {
+                  x: this.car.x - Math.sin(rayAngle)*this.rayLength,
+                  y: this.car.y - Math.cos(rayAngle)*this.rayLength
+              };
+                this.rays.push([start, end]); // Add the ray to the array
         }
     }
 }
