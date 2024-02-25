@@ -11,11 +11,15 @@ class Car {
     this.maxSpeed = 3; // the car will not go faster than this
     this.friction = 0.05; // the friction will slow down the car
     this.angle = 0; // the car will start at 0 degrees
+
+
+    this.sensor = new Sensor(this); // Create a new sensor object
     this.controls = new Controls();
   }
   // Move the car
   update() {
     this.#move();
+    this.sensor.update();
   }
 
   // Draw the car in the canvas context
@@ -31,9 +35,13 @@ class Car {
       this.width,
       this.height
     );
+    
     ctx.fill();
 
     ctx.restore();
+    
+  // Draw the sensor
+    this.sensor.draw(ctx);
   }
 
   #move() {
