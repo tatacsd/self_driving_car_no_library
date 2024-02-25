@@ -15,7 +15,7 @@ class Sensor{
            const rayAngle = lerp(
             this.raySpread/2, // Start angle
             -this.raySpread/2, // End angle
-            i/(this.rayCount-1) // T value
+            this.rayCount===1? 0.5 : i/(this.rayCount-1) // check if there is just one and add tho the middle, if not spread
            ) + this.car.angle; // The rays will follow car postion
 
               // Calculate the ray position
