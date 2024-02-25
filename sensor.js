@@ -16,7 +16,7 @@ class Sensor{
             this.raySpread/2, // Start angle
             -this.raySpread/2, // End angle
             i/(this.rayCount-1) // T value
-           );
+           ) + this.car.angle; // The rays will follow car postion
 
               // Calculate the ray position
               const start = {x:this.car.x, y:this.car.y};
